@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Akcan Yapı</title>
+</head>
+<body>
+
+    <header id="header">
+        <div class="row">
+            <div class="col-sm-11">
+                <img id="back" src="./public/images/64/arrow_left.png" alt="" width="50" height="50" style="float: left; cursor: pointer;">
+                <h1 id="baslik">Projeler</h1>
+            </div>
+            <div class="col-sm-1">
+                <div class="dropdown">
+                        <img class="dropdown-toggle" src="./public/images/64/plus.png" alt="Ekle" style="cursor: pointer; height: 100%;" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" data-toggle="modal" data-target="#islem-ekle">İşlem Ekle</a>
+                        <a class="dropdown-item" data-toggle="modal" data-target="#urun-ekle">Ürün Ekle</a>
+                        <a class="dropdown-item" data-toggle="modal" data-target="#kategori-ekle">Ürün Kategorisi Ekle</a>
+                        <a class="dropdown-item" data-toggle="modal" data-target="#proje-ekle">Proje Ekle</a>
+                        <a class="dropdown-item" data-toggle="modal" data-target="#kullanici-ekle">Kullanıcı Ekle</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="projeler" id="projeler">
+
+    </div>
+
+    <div class="islemler" id="islemler">
+        <div class="row shadow-round" id="proje-detaylari">
+            <table class="table table-striped">
+            <tbody>
+              <tr>
+                <th scope="row">Proje adresi</th>
+                <td id="proje-adresi"></td>
+                <th scope="row">Tahmini inşaat maliyeti</th>
+                <td id="proje-tah-ins-mal"></td>
+              </tr>
+              <tr>
+                <th scope="row">Proje arsa alanı</th>
+                <td id="proje-alani"></td>
+                <th scope="row">Gerçek inşaat maliyeti</th>
+                <td id="proje-ger-ins-mal"></td>
+              </tr>
+              <tr>
+                <th scope="row">İnşaat alanı</th>
+                <td id="insaat-alani"></td>
+                <th scope="row">Başlangıç tarihi</th>
+                <td id="proje-bas-tar"></td>
+              </tr>
+              <tr>
+                <th scope="row">İnşaat maliyeti</th>
+                <td id="proje-ins-mal"></td>
+                <th scope="row">Tahmini bitiş tarihi</th>
+                <td id="proje-tah-bit-tar"></td>
+              </tr>
+              <tr>
+                <th scope="row">Harcanan toplam tutar</th>
+                <td id="proje-har-top-mal"></td>
+                <th scope="row"></th>
+                <td id=""></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="row" id="proje-islemleri" style="margin: 10px; padding: 10px;">
+             
+        </div>
+    </div>
+
+    <div class="islem" id="islem" style="display: none;">
+        <div class="row shadow-round" id="islem-detaylari">
+            <table class="table table-striped">
+            <tbody>
+              <tr>
+                <th scope="row">İşlem tarihi</th>
+                <td id="islem-tarihi"></td>
+                <th scope="row">Para birimi</th>
+                <td id="islem-para-birimi"></td>
+              </tr>
+              <tr>
+                <th scope="row">Tedarikçi</th>
+                <td id="islem-tedarikci"></td>
+                <th scope="row">Birim fiyatı</th>
+                <td id="islem-birim-fiyat"></td>
+              </tr>
+              <tr>
+                <th scope="row">Cari Firma</th>
+                <td id="islem-cari-firma"></td>
+                <th scope="row">Toplam fiyat</th>
+                <td id="islem-toplam-fiyat"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+
+
+
+    
+
+    <!-- İşlem Ekle Modal -->
+    <div class="modal fade" id="islem-ekle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">İşlem Ekle</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <form>
+                        <div class="form-group">
+                            <label for="islem-ekle-proje">Proje: </label>
+                            <select id="islem-ekle-proje" class="select-proje custom-select-md form-control"></select>
+                        </div>
+                        <div class="form-group">
+                                <label for="islem-ekle-urun">Ürün: </label>
+                                <select id="islem-ekle-urun" class="select-urun custom-select-md form-control"></select>
+                        </div>
+                        <div class="form-group">
+                                <label for="islem-ekle-tarih">İslem tarihi: </label>
+                            <input type="date" class="form-control" id="islem-ekle-tarih">
+                        </div>
+                        <div class="form-group">
+                                <label for="islem-ekle-tedarikci">Tedarikçi: </label>
+                            <input type="text" class="form-control" id="islem-ekle-tedarikci">
+                        </div>
+                        <div class="form-group">
+                                <label for="islem-ekle-carifirma">Cari firma: </label>
+                            <input type="text" class="form-control" id="islem-ekle-carifirma">
+                        </div>
+                        <div class="form-group">
+                                <label for="islem-ekle-birimfiyat">Birim fiyat: </label>
+                            <input type="number" class="form-control" id="islem-ekle-birimfiyat">
+                        </div>
+                        <div class="form-group">
+                                <label for="islem-ekle-toplamfiyat">Toplam fiyat: </label>
+                            <input type="text" class="form-control" id="islem-ekle-toplamfiyat">
+                        </div>
+                        <div class="form-group">
+                            <label for="islem-ekle-parabirimi">Para birimi: </label>
+                            <select class="form-control" id="islem-ekle-parabirimi">
+                                <option value="TL">₺</option>
+                                <option value="$">$</option>
+                                <option value="€">€</option>
+                            </select>
+                        </div>
+
+                        <div id="islem-ekle-succes" class="alert alert-success" style="display: none;"></div>
+                        <div id="islem-ekle-failed" class="alert alert-danger" style="display: none;"></div>
+
+                        <div class="form-group" style="float: right; margin: 10px;">
+                            <button type="button" class="btn btn-primary" id="islem-ekle-submit">Ekle</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ürün Ekle Modal -->
+      <div class="modal fade" id="urun-ekle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ürün Ekle</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                    <div class="container">
+                        <form>
+                            <div class="form-group">
+                                <label for="urun-ekle-kategori">Ürün kategorisi: </label>
+                                <select id="urun-ekle-kategori" class="select-kategori custom-select-md form-control"></select>
+                            </div>
+                            <div class="form-group">
+                                <label for="urun-ekle-adi">Ürün adı: </label>
+                                <input type="text" class="form-control" id="urun-ekle-adi">
+                            </div>
+    
+                            <div id="urun-ekle-succes" class="alert alert-success" style="display: none;"></div>
+                            <div id="urun-ekle-failed" class="alert alert-danger" style="display: none;"></div>
+    
+                            <div class="form-group" style="float: right; margin: 10px;">
+                                <button type="button" class="btn btn-primary" id="urun-ekle-submit">Ekle</button>
+                            </div>
+                        </form>
+                    </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ürün Kategorisi Ekle Modal -->
+        <div class="modal fade" id="kategori-ekle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Ürün Kategorisi Ekle</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <form>
+                            <div class="form-group">
+                                <label for="kategori-ekle-ismi">Kategori ismi: </label>
+                                <input type="text" class="form-control" id="kategori-ekle-ismi">
+                            </div>
+
+                            <div id="kategori-ekle-succes" class="alert alert-success" style="display: none;"></div>
+                            <div id="kategori-ekle-failed" class="alert alert-danger" style="display: none;"></div>
+
+                            <div class="form-group" style="float: right; margin: 10px;">
+                                <button type="button" class="btn btn-primary" id="kategori-ekle-submit">Ekle</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Proje Ekle Modal -->
+          <div class="modal fade" id="proje-ekle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Proje Ekle</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="container">
+                        <form>
+                            <div class="form-group">
+                                <label for="proje-ekle-adi">Proje adı: </label>
+                                <input type="text" class="form-control" id="proje-ekle-adi">
+                            </div>
+                            <div class="form-group">
+                                <label for="proje-ekle-adresi">Proje adresi: </label>
+                                <input type="text" class="form-control" id="proje-ekle-adresi">
+                            </div>
+                            <div class="form-group">
+                                <label for="proje-ekle-arsaalani">Proje arsa alanı: </label>
+                                <input type="text" class="form-control" id="proje-ekle-arsaalani" placeholder="m^2">
+                            </div>
+                            <div class="form-group">
+                                <label for="proje-ekle-insalani">Proje inşaat alanı: </label>
+                                <input type="number" class="form-control" id="proje-ekle-insalani" placeholder="m^2">
+                            </div>
+                            <div class="form-group">
+                                <label for="proje-ekle-insmal">Proje inşaat maliyeti: </label>
+                                <input type="number" class="form-control" id="proje-ekle-insmal" placeholder="TL">
+                            </div>
+                            <div class="form-group">
+                                <label for="proje-ekle-tahinsmal">Proje tahmini inşaat maliyeti: </label>
+                                <input type="number" class="form-control" id="proje-ekle-tahinsmal" placeholder="TL">
+                            </div>
+                            <div class="form-group">
+                                <label for="proje-ekle-gerinsmal">Proje gerçek inşaat maliyeti: </label>
+                                <input type="number" class="form-control" id="proje-ekle-gerinsmal" placeholder="TL">
+                            </div>
+                            <div class="form-group">
+                                <label for="proje-ekle-bastar">Proje başlama tarihi: </label>
+                                <input type="date" class="form-control" id="proje-ekle-bastar">
+                            </div>
+                            <div class="form-group">
+                                <label for="proje-ekle-bittar">Proje bitiş tarihi: </label>
+                                <input type="date" class="form-control" id="proje-ekle-bittar">
+                            </div>
+    
+                            <div id="proje-ekle-succes" class="alert alert-success" style="display: none;"></div>
+                            <div id="proje-ekle-failed" class="alert alert-danger" style="display: none;"></div>
+    
+                            <div class="form-group" style="float: right; margin: 10px;">
+                                <button type="button" class="btn btn-primary" id="proje-ekle-submit">Ekle</button>
+                            </div>
+                        </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Kullanıcı Ekle Modal -->
+            <div class="modal fade" id="kullanici-ekle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Kullanıcı Ekle</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <form>
+                                <div class="form-group">
+                                    <label for="kullanici-ekle-ismi">Kullanıcı ismi: </label>
+                                    <input type="text" class="form-control" id="kullanici-ekle-ismi">
+                                </div>
+                                <div class="form-group">
+                                    <label for="kullanici-ekle-soyismi">Kullanıcı Soyismi: </label>
+                                    <input type="text" class="form-control" id="kullanici-ekle-soyismi">
+                                </div>
+                                <div class="form-group">
+                                    <label for="kullanici-ekle-uname">Kullanıcı adı: </label>
+                                    <input type="text" class="form-control" id="kullanici-ekle-uname" >
+                                </div>
+                                <div class="form-group">
+                                    <label for="kullanici-ekle-pass">Parola: </label>
+                                    <input type="password" class="form-control" id="kullanici-ekle-pass" >
+                                </div>
+                                <div class="form-group">
+                                    <label for="kullanici-ekle-yetki">Yetki: </label>
+                                    <select class="form-control" id="kullanici-ekle-yetki">
+                                        <option value="görüntüleme">Sadece Görüntüleme</option>
+                                        <option value="tamyetki">Tam Yetki</option>
+                                    </select>
+                                </div>
+        
+                                <div id="kullanici-ekle-succes" class="alert alert-success" style="display: none;"></div>
+                                <div id="kullanici-ekle-failed" class="alert alert-danger" style="display: none;"></div>
+        
+                                <div class="form-group" style="float: right; margin: 10px;">
+                                    <button type="button" class="btn btn-primary" id="kullanici-ekle-submit">Ekle</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+    <!--CSS Files-->
+    <link rel="stylesheet" type="text/css" href="./public/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./public/sumoselect/sumoselect.min.css">
+    <link rel="stylesheet" type="text/css" href="./public/css/style.css">
+
+    <!--JS Files-->
+    <script type="application/javascript">
+        window.$ = window.jQuery = require('./public/js/jquery/jquery.min.js');
+    </script>
+    <script type="application/javascript" src="./public/js/controller.js"></script>
+    <script type="application/javascript" src="./public/sumoselect/jquery.sumoselect.min.js"></script>
+    <script type="application/javascript" src="./public/js/bootstrap/popper.min.js"></script>
+    <script type="application/javascript" src="./public/js/bootstrap/bootstrap.min.js"></script>
+
+
+    <!-- Fixed top result head -->
+    <script>
+        window.onscroll = function() {myFunction()};
+        
+        var header = document.getElementById("header");
+        var sticky = header.offsetTop;
+        
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
+
+</body>
+</html>

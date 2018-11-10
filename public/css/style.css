@@ -1,0 +1,122 @@
+/****** HTML *****/
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('./../images/bg.jpg') ;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.vr {
+    width: 1px;
+    background-color: black;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    float: left;
+}
+
+.item {
+    min-width: 200px;
+    max-width: 20%;
+    min-height: 80px;
+    width: 22%;
+    margin: 2%;
+    padding: 2%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px black;
+}
+
+.item-left {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+.item-left h3{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.item-right {
+    padding: 0;
+    margin: 0;
+}
+
+.item-right img {
+    cursor: pointer;
+    display: inline;
+    width: 90%;
+    min-width: 25px;
+    max-width: 35px;
+    float: right;
+}
+
+.dropdown a {
+    cursor: pointer;
+}
+
+.alert {
+    z-index: 100;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**** PROJELER ******/
+
+.projeler {
+    width: 100%;
+    margin: 10px;
+    padding: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/**** İŞLEMLER ******/
+.islemler {
+    display: none;
+}
+
+.shadow-round {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px black;
+    background-color: white;
+}
+
+.islem-satir {
+    width: 100%;
+}
